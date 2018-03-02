@@ -13,3 +13,4 @@ This is how I use it:
 
 `docker run -it -p 3000:3000 -e github='https://github.com/pmcdowell-okta/hackey-golang-build.git' oktaadmin/gitpull`
 
+## This is built for GOLANG, but just install any language you wish
