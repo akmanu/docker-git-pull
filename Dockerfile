@@ -1,19 +1,24 @@
 FROM ubuntu:trusty
 
-RUN echo "#!/bin/ksh" > /startscript.sh
-RUN echo "start.." >> /startscript.sh
-RUN echo "echo \$github" > /startscript.sh
-RUN echo "mkdir -p github" >> /startscript.sh
-RUN echo "cd github" >> /startscript.sh
-RUN echo "echo Cloning github" >> /startscript.sh
-RUN echo "git clone --verbose \$github" >> /startscript.sh
-RUN echo "cd *" >> /startscript.sh
-RUN echo "make setup" >> /startscript.sh
-RUN echo "make build" >> /startscript.sh
-RUN echo "make run" >> /startscript.sh
+RUN echo "#!/bin/ksh" > /startscript.sh \
+    echo "start.." >> /startscript.sh \
+    echo "echo \$github" > /startscript.sh \
+    echo "mkdir -p github" >> /startscript.sh \
+    echo "cd github" >> /startscript.sh \
+    echo "echo Cloning github" >> /startscript.sh \
+    echo "git clone --verbose \$github" >> /startscript.sh \
+    echo "cd *" >> /startscript.sh \
+    echo "make setup" >> /startscript.sh \
+    echo "make build" >> /startscript.sh \
+    echo "make run" >> /startscript.sh
 
-RUN apt-get update
-RUN apt-get install curl vim ksh ssh git make -y
+RUN apt-get update && apt-get install -y curl \
+    vim \
+    ksh \
+    ssh \ 
+    git \
+    make \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV GO_VERSION 1.8.6
 
